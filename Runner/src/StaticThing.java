@@ -10,4 +10,8 @@ public class StaticThing {
         this.sizeY = sizeY;
         this.image = image;
     }
+
+    public ImageView getImage() {
+        return image;
+    }
 }
