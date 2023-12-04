@@ -1,3 +1,4 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
@@ -49,20 +50,34 @@ public class Main extends Application {
     //Camera camera= new Camera(300,100);
     GameScene theScene = new GameScene(pane,desert);
 
-    primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {
+
+
+    /*primaryStage.widthProperty().addListener((observable, oldValue, newValue) -> {
         primaryStage.setHeight(newValue.doubleValue() / 2);
     });
 
     primaryStage.heightProperty().addListener((observable, oldValue, newValue) -> {
         primaryStage.setWidth(newValue.doubleValue() * 2);
-    });
+    });*/
+        /*AnimationTimer timer = new AnimationTimer() {
+            @Override
+            public void handle(long time){
+            theScene.render();
+        }
+        };*/
     primaryStage.setScene(theScene);
 
 
-    primaryStage.setMinWidth(600);
+
+    /*primaryStage.setMinWidth(600);
     primaryStage.setMinHeight(300);
-    primaryStage.setMaxWidth(860);
-    primaryStage.setMaxHeight(430);
+    primaryStage.setMaxWidth(870);
+    primaryStage.setMaxHeight(435);*/
+
+       /* primaryStage.setMinWidth(700);
+        primaryStage.setMinHeight(438);
+        primaryStage.setMaxWidth(700);
+        primaryStage.setMaxHeight(439);*/
 
     primaryStage.show();
     }
