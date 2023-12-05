@@ -6,26 +6,38 @@ public class AnimatedThings {
     private ImageView spriteSheet;
     private double x;
     private double y;
-    private Attitude attitude;
+    protected Attitude attitude;
     private final int scrollSpeed;
+    private boolean gun;
     public enum Attitude {
-        chill, course, sauter, tomber
+        run, jump, fall
     }
     //private int attitude;
     private int deltaT;//temps entre deux animations
 
     public AnimatedThings(Image character, double x, double y,int scrollSpeed) {
         this.spriteSheet = new ImageView(character);
-        spriteSheet.setViewport(new Rectangle2D(20,0,65,100));
+
         spriteSheet.setX(x);
         spriteSheet.setY(y);
         this.x=x;
         this.y=y;
-        this.attitude= Attitude.chill;
+        this.attitude= Attitude.run;
         this.scrollSpeed=scrollSpeed;
+
+        this.gun=false;
     }
 
     public ImageView getSpriteSheet() {
         return spriteSheet;
     }
+    public void getFrame(int row, int column) {
+        if(gun){
+            row=row+300;
+        }
+        spriteSheet.setViewport(new Rectangle2D( 5+column * 84, row * 157, 78, 105));
+
+    }
+
+
 }

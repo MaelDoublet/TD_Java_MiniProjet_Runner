@@ -10,4 +10,6 @@ public class Hero extends AnimatedThings{
         this.scrollSpeed = 10;
         this.hp = 8;
     }
+
+
 }
