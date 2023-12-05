@@ -14,12 +14,14 @@ import javafx.stage.Stage;
 
 public class GameScene extends Scene {
     private Camera camera;
-    double vitesseSaut=0;
+    final double vitesseSaut = 12.1;
+    double vitesseY=0;
     protected StaticThing left_Background;
     protected StaticThing right_Background;
     private Image background;
     private Image lifePoint;
     boolean saut=false;
+
 
     private static int backgroundSpeed = 10;
     private Pane pane;
@@ -29,7 +31,6 @@ public class GameScene extends Scene {
         this.pane = pane;
         this.camera = new Camera(300, 100);
 
-        this.vitesseSaut=0;
         //this.backgroundSpeed=10;
 
         this.background = background;
@@ -39,8 +40,7 @@ public class GameScene extends Scene {
         right_Background.getImage().setX(800);
         left_Background.getImage().setY(0);
         right_Background.getImage().setY(0);
-        /*left_Background.getImage().setStyle("-fx-background-color: lightblue;");
-        right_Background.getImage().setStyle("-fx-background-color: lightgreen;");*/
+
         pane.getChildren().addAll(left_Background.getImage(), right_Background.getImage());
 
         Hero hero = new Hero(new Image("im/heros.png"), 200, 100);
@@ -61,30 +61,33 @@ public class GameScene extends Scene {
                         frameTimer=0;
                     }
 
-                    /*if(vitesseSaut==10.1){
-                        hero.getSpriteSheet().setTranslateY(-250);
-                    }*/
-                    hero.getSpriteSheet().setY(250 - isZero(vitesseSaut)*(12.1-vitesseSaut)*(12.1 +vitesseSaut));//On met isZero pour enlever l'offset de la position neutre
+                    System.out.println(vitesseY);
 
-                    if(vitesseSaut>0){
+                    hero.getSpriteSheet().setY(250 - isZero(vitesseY)*(vitesseSaut-vitesseY)*(vitesseSaut +vitesseY));//On met isZero pour enlever l'offset de la position neutre
+
+                    if(vitesseY>0){
                         hero.attitude= AnimatedThings.Attitude.jump;
-                        vitesseSaut--;
-                    } else if(vitesseSaut<0){
+                        vitesseY--;
+                    } else if(vitesseY<0){
                         hero.attitude= AnimatedThings.Attitude.fall;
-                        vitesseSaut--;
-                        if(vitesseSaut<-10){
-                            vitesseSaut=0;
+                        vitesseY--;
+                        if(vitesseY<-10){
+                            vitesseY=0;
                             //hero.getSpriteSheet().setY(250);
                         }
                     } else{
-                        vitesseSaut=0;
+                        vitesseY=0;
                         hero.attitude= AnimatedThings.Attitude.run;
                         saut= false;
                     }
 
+                    /*if(hero.gun){
+                        hero.gun=false;
+                    }*/
+
                     render();
-                    //update_hero(hero);
                     lastUpdate = time;
+
                 }
 
 
@@ -92,17 +95,20 @@ public class GameScene extends Scene {
         };
         timer.start();
 
-        //pane.getChildren().addAll();
-
 
         pane.requestFocus();
 
         pane.setOnKeyPressed(event-> {
             if(event.getCode() == KeyCode.SPACE){
-                if(!saut){
+                if(!saut){ //On ajoute ce if pour forcer l'attente entre les sauts
                     saut=true;
-                    vitesseSaut=12.1;
+                    vitesseY=vitesseSaut;
                 }
+            }
+
+            if(event.getCode() == KeyCode.SHIFT){
+                //On implemente la possibilité de tirer (pour le moment tendre la main)
+                hero.gun= !hero.gun;
             }
         });
     }

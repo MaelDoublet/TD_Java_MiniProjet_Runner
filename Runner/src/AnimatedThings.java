@@ -8,11 +8,10 @@ public class AnimatedThings {
     private double y;
     protected Attitude attitude;
     private final int scrollSpeed;
-    private boolean gun;
+    protected boolean gun;
     public enum Attitude {
         run, jump, fall
     }
-    //private int attitude;
     private int deltaT;//temps entre deux animations
 
     public AnimatedThings(Image character, double x, double y,int scrollSpeed) {
@@ -33,9 +32,9 @@ public class AnimatedThings {
     }
     public void getFrame(int row, int column) {
         if(gun){
-            row=row+300;
+            row=row+2;
         }
-        spriteSheet.setViewport(new Rectangle2D( 5+column * 84, row * 157, 78, 105));
+        spriteSheet.setViewport(new Rectangle2D( 5+column * 84, 4+ row * 151, 78, 103));
 
     }
 

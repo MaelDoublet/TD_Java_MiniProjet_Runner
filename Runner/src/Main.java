@@ -20,35 +20,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        primaryStage.setTitle("Hello world");
+        primaryStage.setTitle("A la recherche de réseaux");
         Image desert;
         desert = new Image("im/desert.png");
 
-        //Image spriteSheet = new Image("C:\\Users\\LENOVO\\TD_Java_MiniProjet_Runner\\Runner\\im\\heros.png");
-        // ImageView sprite = new ImageView(spriteSheet);
-        // sprite.setViewport(new Rectangle2D(20,0,65,100));
-        // sprite.setX(200);
-        // sprite.setY(300);
-        //ImageView backgroundLeft = new ImageView(desert);
-        //ImageView backgroundRight = new ImageView(desert);
-        //Image desert = new Image(getClass().getClassLoader().getResource("Runner/im/desert.png").toString());
-        //Image desert = new Image(getClass().getClassLoader().getResourceAsStream("im/desert.png"));
-
-        //ImageView background = new ImageView(desert);
-
-        /*URL imageUrl = getClass().getClassLoader().getResource("im/desert.png");
-        if (imageUrl != null) {
-            Image desert = new Image(imageUrl.toString());
-        } else {
-            System.out.println("L'image n'a pas été trouvée.");
-        }*/
 
         Group root = new Group();
         Pane pane = new Pane(root);
-        //Pane pane =new Pane(backgroundLeft,backgroundRight);
-    //Scene theScene = new Scene(pane, 600, 400,true);
-    //Camera camera= new Camera(300,100);
-    GameScene theScene = new GameScene(pane,desert);
+        GameScene theScene = new GameScene(pane,desert);
 
 
 
@@ -65,20 +44,15 @@ public class Main extends Application {
             theScene.render();
         }
         };*/
-    primaryStage.setScene(theScene);
+        primaryStage.setScene(theScene);
 
 
-
-    /*primaryStage.setMinWidth(600);
-    primaryStage.setMinHeight(300);
-    primaryStage.setMaxWidth(870);
-    primaryStage.setMaxHeight(435);*/
-
-       /* primaryStage.setMinWidth(700);
-        primaryStage.setMinHeight(438);
+        //Fixer les dimensions de la fenetre
+        primaryStage.setMinWidth(700);
+        primaryStage.setMinHeight(439);
         primaryStage.setMaxWidth(700);
-        primaryStage.setMaxHeight(439);*/
+        primaryStage.setMaxHeight(439);
 
-    primaryStage.show();
+        primaryStage.show();
     }
 }
